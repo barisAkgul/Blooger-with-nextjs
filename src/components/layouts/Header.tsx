@@ -5,6 +5,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { Button } from "../ui/button";
 
 import { MainNav } from "@/components/header/MainNav";
+import { ThemeToggle } from "@/components/header/theme-toggle";
 
 const Header = async () => {
   return (
@@ -14,6 +15,8 @@ const Header = async () => {
         <MainNav className="mx-6 hidden lg:flex" />
 
         <div className="flex flex-row gap-10">
+          <ThemeToggle />
+
           <Button size="sm">
             <Link href="/sign-in">Sign in</Link>
           </Button>

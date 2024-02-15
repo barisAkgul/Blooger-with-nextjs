@@ -46,7 +46,7 @@
     --bg-carolina-blue: hsla(199, 89%, 49%, 1);
     --bg-prussian-blue: hsla(216, 33%, 20%, 1);
     --bg-oxford-blue: hsla(222, 44%, 13%, 1);
-    --bg-oxford-blue-2: hsla(222, 47%, 11%, 1);
+    --bg-oxford-blue-2: rgb(255, 255, 255);
 
     /** Text colors */
     --text-white: hsla(0, 0%, 100%, 1);
@@ -259,4 +259,13 @@
     --cubic-in: cubic-bezier(0.51, 0.03, 0.64, 0.28);
     --cubic-out: cubic-bezier(0.05, 0.83, 0.52, 0.97);
   }
+}
+
+body {
+  background-color: var(--bg-oxford-blue-2);
+  color: var(--text-shadow-blue);
+  font-family: var(--fontFamily-noto_sans);
+  font-size: 1.6rem;
+  line-height: var(--lineHeight-4);
+  overflow-y: overlay;
 }

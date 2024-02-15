@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 import "@/styles/breakpoints.css";
 import "./globals.css";
 
+import { ThemeProvider } from "@/providers/theme-provider";
+
 import Header from "@/components/layouts/Header";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,9 +23,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* @ts-ignore */}
-        <Header />
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {/* @ts-ignore */}
+          <Header />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
