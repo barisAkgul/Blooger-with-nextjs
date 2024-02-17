@@ -7,6 +7,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 
 import Header from "@/components/layouts/Header";
+import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,8 +22,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={cn("bg-oxford-blue", inter.className)}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
