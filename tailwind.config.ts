@@ -10,15 +10,6 @@ const config = {
   ],
   prefix: "",
   theme: {
-    textColor: {
-      "alice-blue": "var(--text-alice-blue)",
-    },
-    colors: {
-      "oxford-blue": "var(--bg-oxford-blue-2)",
-    },
-    gradiend: {
-      "gradiend-1": "var(--gradient-1)",
-    },
     container: {
       center: true,
       padding: "2rem",
@@ -61,6 +52,14 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+
+        /*Custom Colors */
+
+        // Background Colors
+        "oxford-blue": "var(--bg-oxford-blue-2)",
+
+        // Text Colors
+        "alice-blue": "var(--text-alice-blue)",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -80,6 +79,9 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      gradiend: {
+        "gradiend-1": "var(--gradient-1)",
       },
     },
   },
