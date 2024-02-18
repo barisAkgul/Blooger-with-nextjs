@@ -1,13 +1,15 @@
+import { cn } from "@/lib/utils";
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import "@/styles/breakpoints.css";
 import "./globals.css";
 
-import { ThemeProvider } from "@/providers/theme-provider";
-
 import Header from "@/components/layouts/Header";
-import { cn } from "@/lib/utils";
+
+import { ToasterProvider } from "@/providers/toast-provider";
+import { ThemeProvider } from "@/providers/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +32,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <ToasterProvider />
           {/* @ts-ignore */}
           <Header />
           {children}
