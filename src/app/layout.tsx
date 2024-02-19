@@ -8,8 +8,10 @@ import "./globals.css";
 
 import Header from "@/components/layouts/Header";
 
+//Providers
 import { ToasterProvider } from "@/providers/toast-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
+import AuthProvider from "@/providers/auth-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,17 +28,19 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn("bg-oxford-blue", inter.className)}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <ToasterProvider />
-          {/* @ts-ignore */}
-          <Header />
-          {children}
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <ToasterProvider />
+            {/* @ts-ignore */}
+            <Header />
+            {children}
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );
