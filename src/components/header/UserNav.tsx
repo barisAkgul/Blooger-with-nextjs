@@ -1,6 +1,13 @@
 "use client";
 
-import { CreditCard, LogOut, PlusCircle, Settings, User } from "lucide-react";
+import {
+  CreditCard,
+  LogOut,
+  PlusCircle,
+  Settings,
+  User,
+  NotebookPen,
+} from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -19,9 +26,14 @@ import { signOut } from "next-auth/react";
 interface UserNavProps {
   username: string;
   email: string;
+  isAdmin: boolean | undefined;
 }
 
-export const UserNav: React.FC<UserNavProps> = ({ username, email }) => {
+export const UserNav: React.FC<UserNavProps> = ({
+  username,
+  email,
+  isAdmin,
+}) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -44,14 +56,22 @@ export const UserNav: React.FC<UserNavProps> = ({ username, email }) => {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <Settings className="mr-2 h-4 w-4" />
+            <NotebookPen className="mr-2 h-4 w-4" />
             <span>My Posts</span>
             <DropdownMenuShortcut>⌘M</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
             <PlusCircle className="mr-2 h-4 w-4" />
             <span>New Post</span>
+            <DropdownMenuShortcut>⌘N</DropdownMenuShortcut>
           </DropdownMenuItem>
+          {isAdmin && (
+            <DropdownMenuItem>
+              <Settings className="mr-2 h-4 w-4" />
+              <span>Dashboard</span>
+              <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          )}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => signOut()}>
