@@ -1,5 +1,8 @@
 "use client";
 
+import Link from "next/link";
+import { signOut } from "next-auth/react";
+
 import {
   CreditCard,
   LogOut,
@@ -21,7 +24,8 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { signOut } from "next-auth/react";
+
+import { ScreenRoutes } from "@/helpers/config/site";
 
 interface UserNavProps {
   username: string;
@@ -53,28 +57,36 @@ export const UserNav: React.FC<UserNavProps> = ({
             </p>
           </div>
         </DropdownMenuLabel>
+
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <NotebookPen className="mr-2 h-4 w-4" />
-            <span>My Posts</span>
-            <DropdownMenuShortcut>⌘M</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <PlusCircle className="mr-2 h-4 w-4" />
-            <span>New Post</span>
-            <DropdownMenuShortcut>⌘N</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          {isAdmin && (
-            <DropdownMenuItem>
-              <Settings className="mr-2 h-4 w-4" />
-              <span>Dashboard</span>
-              <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
+          <Link href={ScreenRoutes.USER_POSTS}>
+            <DropdownMenuItem className="cursor-pointer">
+              <NotebookPen className="mr-2 h-4 w-4" />
+              <span>My Posts</span>
+              <DropdownMenuShortcut>⌘M</DropdownMenuShortcut>
             </DropdownMenuItem>
+          </Link>
+
+          <Link href={`${ScreenRoutes.USER_POSTS}/new`}>
+            <DropdownMenuItem className="cursor-pointer">
+              <PlusCircle className="mr-2 h-4 w-4" />
+              <span>New Post</span>
+              <DropdownMenuShortcut>⌘N</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </Link>
+          {isAdmin && (
+            <Link href={"/dashboard"}>
+              <DropdownMenuItem className="cursor-pointer">
+                <Settings className="mr-2 h-4 w-4" />
+                <span>Dashboard</span>
+                <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
+              </DropdownMenuItem>
+            </Link>
           )}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => signOut()}>
+        <DropdownMenuItem onClick={() => signOut()} className="cursor-pointer">
           <LogOut className="mr-2 h-4 w-4" />
           <span>Log out</span>
           <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
