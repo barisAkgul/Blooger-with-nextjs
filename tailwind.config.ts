@@ -17,6 +17,16 @@ const config = {
         "2xl": "1400px",
       },
     },
+    fontSize: {
+      sm: "0.8rem",
+      base: "1rem",
+      xl: "1.25rem",
+      "2xl": "1.563rem",
+      "3xl": "1.953rem",
+      "4xl": "2.441rem",
+      "5xl": "3.052rem",
+      "6xl": "4rem",
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",
@@ -57,9 +67,15 @@ const config = {
 
         // Background Colors
         "oxford-blue": "var(--bg-oxford-blue-2)",
+        "tag-blue": "var(--bg-tag-blue)",
 
         // Text Colors
         "alice-blue": "var(--text-alice-blue)",
+        "columbia-blue": "var(--text-columbia-blue)",
+        "carolina-blue": "var(--text-carolina-blue)",
+
+        // Border Colors
+        "prussian-blue": "var(--border-prussian-blue)",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -79,9 +95,15 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "transition-1": "easy 0.250s",
       },
       gradiend: {
         "gradiend-1": "var(--gradient-1)",
+      },
+      gridTemplateColumns: {
+        "auto-fill-100": "repeat(auto-fill, minmax(100px, 1fr))",
+        "auto-fit-125": "repeat(auto-fit, minmax(125px, 1fr))",
+        "0.7fr-1fr": "0.7fr 1fr;",
       },
     },
   },
