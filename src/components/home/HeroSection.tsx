@@ -93,16 +93,14 @@ type Props = {};
 
 const HeroSection = (props: Props) => {
   return (
-    <section className="pt-40" id="home" aria-label="home">
-      <div className="container grid grid-cols-2 gap-16 items-center max-w-screen-lg">
+    <section className="pt-40 pb-40" id="home" aria-label="home">
+      <div className="container gap-16 items-center max-w-screen-lg">
         <div className="hero-content">
           <p className="text-lg font-bold">Hello Everyone!</p>
 
           <h1 className="mt-10 mb-10 text-6xl font-extrabold text-alice-blue">
-            I’m{" "}
-            <span className="text-transparent-background-clip ">
-              Wren Clark
-            </span>
+            Welcome{" "}
+            <span className="text-transparent-background-clip ">Blooger</span>
           </h1>
 
           <p className="mb-12">
@@ -111,7 +109,7 @@ const HeroSection = (props: Props) => {
             adding motion just to spruce things up, but doing it in ways that.
           </p>
 
-          <div className="input-wrapper">
+          <div className="input-wrapper max-w-[400px]">
             <input
               type="email"
               name="email_address"
@@ -129,15 +127,7 @@ const HeroSection = (props: Props) => {
           </div>
         </div>
 
-        <div className="relative">
-          <img
-            src="./assets/images/hero-banner.png"
-            width="327"
-            height="490"
-            alt="Wren Clark"
-            className="w-100  m-auto"
-          />
-
+        <div className="relative max-w-[400px] ml-auto">
           <img
             src="./assets/images/pattern-2.svg"
             width="27"
