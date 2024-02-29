@@ -12,6 +12,7 @@ import Header from "@/components/layouts/Header";
 import { ToasterProvider } from "@/providers/toast-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 import AuthProvider from "@/providers/auth-provider";
+import Footer from "@/components/layouts/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
