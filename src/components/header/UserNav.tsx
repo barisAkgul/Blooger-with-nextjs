@@ -60,7 +60,7 @@ export const UserNav: React.FC<UserNavProps> = ({
 
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <Link href={ScreenRoutes.USER_POSTS}>
+          <Link href={`/${ScreenRoutes.USER_POSTS}`}>
             <DropdownMenuItem className="cursor-pointer">
               <NotebookPen className="mr-2 h-4 w-4" />
               <span>My Posts</span>
@@ -68,7 +68,7 @@ export const UserNav: React.FC<UserNavProps> = ({
             </DropdownMenuItem>
           </Link>
 
-          <Link href={`${ScreenRoutes.USER_POSTS}/new`}>
+          <Link href={`/${ScreenRoutes.USER_POSTS}/new`}>
             <DropdownMenuItem className="cursor-pointer">
               <PlusCircle className="mr-2 h-4 w-4" />
               <span>New Post</span>
@@ -76,7 +76,7 @@ export const UserNav: React.FC<UserNavProps> = ({
             </DropdownMenuItem>
           </Link>
           {isAdmin && (
-            <Link href={"/dashboard"}>
+            <Link href={`/${ScreenRoutes.DASHBOARD}`}>
               <DropdownMenuItem className="cursor-pointer">
                 <Settings className="mr-2 h-4 w-4" />
                 <span>Dashboard</span>
