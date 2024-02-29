@@ -40,11 +40,11 @@ const SignInForm = (props: Props) => {
         ...data,
         redirect: false,
       });
-      console.log(response);
+
       if (response?.ok) {
         toast.success("Logged in");
-        router.refresh();
         router.push("/");
+        router.refresh();
       } else {
         throw new Error("Invalid credential.");
       }

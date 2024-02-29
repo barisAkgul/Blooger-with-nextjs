@@ -31,13 +31,10 @@ const SignUpForm = (props: Props) => {
   });
 
   const submitData = (data: SettingsFormValues) => {
-    console.log("IT WORKED", data);
-
     setLoading(true);
     axios
       .post("/api/register", data)
       .then((response) => {
-        console.log(response);
         if (response?.status == 200) {
           toast.success("Sign up succesfull");
           router.refresh();
