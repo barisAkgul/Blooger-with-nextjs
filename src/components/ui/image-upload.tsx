@@ -34,8 +34,6 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     return null;
   }
 
-  console.log(value);
-
   return (
     <div className="relative w-full border border-dashed border-gray-200 h-96 rounded-lg flex flex-col justify-center items-center">
       {value?.length > 0 && (
