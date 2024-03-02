@@ -68,14 +68,14 @@
 //           )}
 
 //           {/* Mobile Open Button */}
-//           <button
-//             className="lg:hidden text-text-wild-blue-yonder text-3xl"
-//             aria-label="open menu"
-//             data-nav-toggler
-//             // onClick={toggleMobileNavbar}
-//           >
-//             <AiOutlineMenu />
-//           </button>
+// <button
+//   className="lg:hidden text-text-wild-blue-yonder text-3xl"
+//   aria-label="open menu"
+//   data-nav-toggler
+//   // onClick={toggleMobileNavbar}
+// >
+//   <AiOutlineMenu />
+// </button>
 //         </div>
 //       </div>
 //     </header>
@@ -92,10 +92,14 @@ import { getServerSession } from "next-auth";
 import prismadb from "@/lib/prismadb";
 
 import { Button } from "../ui/button";
+import { AiOutlineMenu } from "react-icons/ai";
 
 import { MainNav } from "@/components/header/MainNav";
 import { ThemeToggle } from "@/components/header/ThemeToggle";
 import { UserNav } from "../header/UserNav";
+import { ScreenRoutes } from "@/helpers/config/site";
+import { MobileSidebar } from "../header/mobile/MobileSidebar";
+import { Logo } from "../header/Logo";
 
 const Navbar = async () => {
   const session = await getServerSession(options);
@@ -106,9 +110,11 @@ const Navbar = async () => {
     },
   });
   return (
-    <header>
-      <div className="flex justify-around items-center h-16">
-        <div>Blooger</div>
+    <header className="container md:pr-0 md:pl-0">
+      <div className="flex justify-between items-center h-16 pt-[24px] pb-[24px]">
+        <div className="relative">
+          <Logo />
+        </div>
         <MainNav className="mx-6" />
 
         <div className="flex items-center gap-4">
@@ -122,9 +128,11 @@ const Navbar = async () => {
             />
           ) : (
             <Button size="sm" className="btn">
-              <Link href="/sign-in">Sign in</Link>
+              <Link href={`/${ScreenRoutes.SIGNIN}`}>Sign in</Link>
             </Button>
           )}
+
+          <MobileSidebar />
         </div>
       </div>
     </header>

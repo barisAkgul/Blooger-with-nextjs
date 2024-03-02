@@ -4,35 +4,34 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 
+import { isActiveRoute } from "@/lib/utils";
+import { ScreenRoutes } from "@/helpers/config/site";
+
+export const routes = [
+  {
+    href: `${ScreenRoutes.HOME}`,
+    label: "Homepage",
+  },
+  {
+    href: `/${ScreenRoutes.BLOG}`,
+    label: "Blog",
+  },
+  {
+    href: `/${ScreenRoutes.CONTACT}`,
+    label: "Contact",
+  },
+];
+
 export function MainNav({
   className,
   ...props
 }: React.HTMLAttributes<HTMLElement>) {
   const pathname = usePathname();
-  const params = useParams();
-
-  const routes = [
-    {
-      href: `/`,
-      label: "Homepage",
-      active: pathname === `/`,
-    },
-    {
-      href: `/blog`,
-      label: "Blog",
-      active: pathname === `/blog`,
-    },
-    {
-      href: `contact`,
-      label: "Contact",
-      active: pathname === `/contact`,
-    },
-  ];
 
   return (
     <nav
       className={cn(
-        "flex items-center space-x-4 lg:space-x-6 gap-20",
+        "hidden md:flex items-center space-x-4 lg:space-x-6 gap-20 ",
         className
       )}
       {...props}
@@ -43,7 +42,7 @@ export function MainNav({
           href={route.href}
           className={cn(
             "text-wild-blue-yonder font-medium transition-colors hover:text-primary text-base",
-            route.active
+            isActiveRoute(pathname, route.href)
               ? "text-black dark:text-white"
               : "text-muted-foreground"
           )}
