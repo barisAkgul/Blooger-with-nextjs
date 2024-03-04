@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 
 import prismadb from "@/lib/prismadb";
 import serverSession from "@/lib/serverSession";
+import DahboardSidebar from "@/components/layouts/DahboardSidebar";
 
 export default async function DashboardLayout({
   children,
@@ -20,11 +21,14 @@ export default async function DashboardLayout({
     },
   });
 
-  console.log(session);
-
   if (!user || !user.isAdmin) {
     redirect("/");
   }
 
-  return <>{children}</>;
+  return (
+    <div className="flex">
+      <DahboardSidebar />
+      <div className="flex-1">{children}</div>
+    </div>
+  );
 }
