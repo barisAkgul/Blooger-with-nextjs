@@ -98,8 +98,8 @@ const HeroSection = (props: Props) => {
         <div className="hero-content">
           <p className="text-lg font-bold">Hello Everyone!</p>
 
-          <h1 className="mt-10 mb-10 text-6xl font-extrabold text-alice-blue">
-            Welcome{" "}
+          <h1 className="mt-10 mb-10 text-4xl md:text-6xl font-extrabold text-alice-blue">
+            Welcome to{" "}
             <span className="text-transparent-background-clip ">Blooger</span>
           </h1>
 
@@ -150,7 +150,7 @@ const HeroSection = (props: Props) => {
           width="500"
           height="800"
           alt=""
-          className="hero-bg hero-bg-1"
+          className="hero-bg hero-bg-1 hidden md:block"
         />
 
         <img
@@ -158,7 +158,7 @@ const HeroSection = (props: Props) => {
           width="500"
           height="500"
           alt=""
-          className="hero-bg hero-bg-2"
+          className="hero-bg hero-bg-2 hidden md:block"
         />
       </div>
     </section>
