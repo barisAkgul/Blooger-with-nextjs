@@ -1,0 +1,53 @@
+/* components/Editor/styles.modules.css */
+
+.wrapper {
+  padding: 2rem 3rem;
+}
+
+.label {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.editor {
+  margin-top: 1rem;
+  height: 500px;
+  background-color: var(--bg-oxford-blue-2);
+}
+
+.ql-toolbar.ql-snow {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-color: var(--border-prussian-blue);
+}
+
+.ql-toolbar.ql-snow + .ql-container.ql-snow {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-color: var(--border-prussian-blue);
+  height: 500px;
+}
+
+.my-custom-quill-editor .ql-bold {
+  /* Kalın düğmesinin stili */
+  background-color: #3498db;
+  color: var(--text-columbia-blue);
+}
+
+.ql-toolbar .ql-stroke {
+  fill: none;
+  stroke: var(--text-columbia-blue);
+}
+
+.ql-toolbar .ql-fill {
+  fill: var(--text-columbia-blue);
+  stroke: none;
+}
+
+.ql-toolbar .ql-picker {
+  color: var(--text-columbia-blue);
+}
+
+.ql-toolbar .ql-blockquote {
+  color: var(--text-columbia-blue);
+}
