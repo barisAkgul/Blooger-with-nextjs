@@ -1,34 +1,53 @@
 "use client";
 
-import React from "react";
+import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
-interface PaginationProps {
-  page: number;
-  hasPrev: boolean;
-  hasNext: boolean;
+interface IPagination {
+  totalPages: number;
 }
 
-const Pagination: React.FC<PaginationProps> = ({ page, hasPrev, hasNext }) => {
+export default function Pagination({ totalPages }: IPagination) {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const router = useRouter();
+  const currentPage = Number(searchParams.get("page")) || 1;
 
+  const createPageURL = (pageNumber: number | string) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("page", pageNumber.toString());
+
+    return `${pathname}/?${params.toString()}`;
+  };
   return (
-    <div className="flex justify-between mt-5">
-      <button
-        disabled={!hasPrev}
-        onClick={() => router.push(`?page=${page - 1}`)}
-      >
-        Previous
-      </button>
-      <button
-        disabled={!hasNext}
-        onClick={() => router.push(`?page=${page + 1}`)}
-      >
-        Next
-      </button>
-    </div>
+    <>
+      <div className="flex items-center justify-between space-x-3">
+        <Button size="icon" asChild>
+          <Link
+            href={`${createPageURL(currentPage - 1)}`}
+            className={
+              currentPage - 1 === 0 ? `pointer-events-none opacity-50` : ""
+            }
+          >
+            <ChevronLeft />
+          </Link>
+        </Button>
+        <Button size="icon" asChild>
+          <Link
+            href={`${createPageURL(currentPage + 1)}`}
+            className={
+              currentPage >= totalPages ? `pointer-events-none opacity-50` : ""
+            }
+          >
+            <ChevronRight />
+          </Link>
+        </Button>
+      </div>
+    </>
   );
-};
-
-export default Pagination;
+}
