@@ -34,9 +34,7 @@ const quillFormats = [
 ];
 
 interface EditorProps {
-  // disabled?: boolean;
   onChange: (value: string) => void;
-  // onRemove: (value: string) => void;
   value: string;
 }
 
@@ -57,8 +55,6 @@ const Editor: React.FC<EditorProps> = ({ onChange, value }) => {
         formats={quillFormats}
         className="w-full h-[70%] mt-10 bg-oxford-blue-2 border-wild-blue-yonder "
       />
-
-      <div dangerouslySetInnerHTML={{ __html: content }} />
     </main>
   );
 };

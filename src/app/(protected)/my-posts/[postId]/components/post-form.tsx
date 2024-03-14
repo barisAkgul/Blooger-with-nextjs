@@ -37,7 +37,8 @@ import { ScreenRoutes } from "@/helpers/config/site";
 
 const formSchema = z.object({
   name: z.string().min(1),
-  desc: z.string().min(50),
+  desc: z.string().min(10),
+  content: z.string().min(50),
   images: z.string().min(1),
   categoryName: z.string().min(1),
 });
@@ -70,12 +71,14 @@ export const PostForm: React.FC<PostFormProps> = ({
         images: initialData.img || "",
         categoryName: initialData.catSlug || "",
         desc: initialData.desc || "",
+        content: initialData.content || "",
       }
     : {
         name: "",
         images: "",
         categoryName: "",
         desc: "",
+        content: "",
       };
 
   const form = useForm<PostFormValues>({
@@ -95,9 +98,10 @@ export const PostForm: React.FC<PostFormProps> = ({
       } else {
         await axios.post(`/api/${ScreenRoutes.USER_POSTS}`, data);
       }
-      router.refresh();
+
       router.push(`/${ScreenRoutes.USER_POSTS}`);
       toast.success(toastMessage);
+      router.refresh();
     } catch (error: any) {
       toast.error("Something went wrong.");
     } finally {
@@ -154,18 +158,6 @@ export const PostForm: React.FC<PostFormProps> = ({
               <FormItem>
                 <FormLabel>Images</FormLabel>
                 <FormControl>
-                  {/* <ImageUpload
-                    value={field.value.map((image) => image.url)}
-                    disabled={loading}
-                    onChange={(url) =>
-                      field.onChange([...field.value, { url }])
-                    }
-                    onRemove={(url) =>
-                      field.onChange([
-                        ...field.value.filter((current) => current.url !== url),
-                      ])
-                    }
-                  /> */}
                   <ImageUpload
                     value={field.value ? [field.value] : []}
                     disabled={loading}
@@ -232,6 +224,23 @@ export const PostForm: React.FC<PostFormProps> = ({
           <FormField
             control={form.control}
             name="desc"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Description</FormLabel>
+                <FormControl>
+                  <Input
+                    disabled={loading}
+                    placeholder="Post description"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="content"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Content</FormLabel>
