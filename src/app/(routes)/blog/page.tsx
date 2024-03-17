@@ -5,9 +5,16 @@ import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import React from "react";
 
-type Props = {};
-
-const BlogPage = (props: Props) => {
+const BlogPage = ({
+  searchParams,
+}: {
+  searchParams?: {
+    page?: string;
+    limit?: string;
+  };
+}) => {
+  const currentPage = Number(searchParams?.page) || 1;
+  const limit = Number(searchParams?.limit) || 5;
   return (
     <div className="container min-h-[100vh] pt-10">
       <Heading
@@ -22,12 +29,12 @@ const BlogPage = (props: Props) => {
         aria-labelledby="recent-label"
       >
         <div className="container grid grid-cols-1fr-0.6fr items-start gap-14">
-          <RecentPostsSection />
+          {/* @ts-ignore */}
+          <RecentPostsSection currentPage={currentPage} limit={limit} />
 
           <div className="post-aside grid gap-7">
             <PopularPosts />
             <LastComments />
-            {/* <InstagramCards /> */}
           </div>
         </div>
       </section>
