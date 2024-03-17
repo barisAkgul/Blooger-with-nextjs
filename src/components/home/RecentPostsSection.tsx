@@ -1,83 +1,52 @@
-import Pagination from "../common/Pagination";
+import { format } from "date-fns";
+import { Suspense } from "react";
+
 import RecentPostCard from "../common/RecentPostCard";
+import Pagination from "../common/Pagination";
 import { Heading } from "../ui/heading";
 
-const RecentPostsSection = () => {
-  const recentPosts = [
-    {
-      imgSrc: "./assets/images/recent-post-1.jpg",
-      imgAlt: "Helpful Tips for Working from Home as a Freelancer",
-      badge: "Working Tips",
-      title: "Helpful Tips for Working from Home as a Freelancer",
-      text: "Gosh jaguar ostrich quail one excited dear hello and bound and the and bland moral misheard roadrunner flapped lynx far that and jeepers giggled far and far",
-      tags: ["# Travel", "# Lifestyle"],
-      readTime: "3 mins read",
-    },
-    {
-      imgSrc: "./assets/images/recent-post-2.jpg",
-      imgAlt: "Helpful Tips for Working from Home as a Freelancer",
-      badge: "Working Tips",
-      title: "Helpful Tips for Working from Home as a Freelancer",
-      text: "Gosh jaguar ostrich quail one excited dear hello and bound and the and bland moral misheard roadrunner flapped lynx far that and jeepers giggled far and far",
-      tags: ["# Travel", "# Lifestyle"],
-      readTime: "3 mins read",
-    },
-    {
-      imgSrc: "./assets/images/recent-post-3.jpg",
-      imgAlt: "Helpful Tips for Working from Home as a Freelancer",
-      badge: "Working Tips",
-      title: "Helpful Tips for Working from Home as a Freelancer",
-      text: "Gosh jaguar ostrich quail one excited dear hello and bound and the and bland moral misheard roadrunner flapped lynx far that and jeepers giggled far and far",
-      tags: ["# Travel", "# Lifestyle"],
-      readTime: "3 mins read",
-    },
-    {
-      imgSrc: "./assets/images/recent-post-4.jpg",
-      imgAlt: "Helpful Tips for Working from Home as a Freelancer",
-      badge: "Working Tips",
-      title: "Helpful Tips for Working from Home as a Freelancer",
-      text: "Gosh jaguar ostrich quail one excited dear hello and bound and the and bland moral misheard roadrunner flapped lynx far that and jeepers giggled far and far",
-      tags: ["# Travel", "# Lifestyle"],
-      readTime: "3 mins read",
-    },
-    {
-      imgSrc: "./assets/images/recent-post-5.jpg",
-      imgAlt: "Helpful Tips for Working from Home as a Freelancer",
-      badge: "Working Tips",
-      title: "Helpful Tips for Working from Home as a Freelancer",
-      text: "Gosh jaguar ostrich quail one excited dear hello and bound and the and bland moral misheard roadrunner flapped lynx far that and jeepers giggled far and far",
-      tags: ["# Travel", "# Lifestyle"],
-      readTime: "3 mins read",
-    },
-  ];
+import { GetPosts } from "@/actions/getPostsWithPagination";
+
+interface IRecentPosts {
+  currentPage: number;
+  limit: number;
+}
+
+export default async function RecentPostsSection({
+  currentPage,
+  limit,
+}: IRecentPosts) {
+  const offset = (currentPage - 1) * limit;
+
+  const { data, totalPages } = await GetPosts({ offset });
 
   return (
-    <div className="post-main">
+    <div className="post-main" id="posts">
       <Heading
         variant="landing"
         title="Recent posts"
         description="Don't miss the latest trends"
       />
 
-      <ul className="grid gap-14">
-        {recentPosts.map((post, index) => (
-          <li key={index}>
-            <RecentPostCard
-              imgSrc={post.imgSrc}
-              imgAlt={post.imgAlt}
-              badge={post.badge}
-              title={post.title}
-              text={post.text}
-              tags={post.tags}
-              readTime={post.readTime}
-            />
-          </li>
-        ))}
-      </ul>
-
-      <Pagination page={2} hasPrev={true} hasNext={false} />
+      <Suspense key={currentPage} fallback={"Loading"}>
+        <ul className="grid gap-14">
+          {data.map((post, index) => (
+            <li key={index}>
+              <RecentPostCard
+                id={post.id}
+                imgSrc={post.img}
+                imgAlt={post.title}
+                badge={post.catSlug}
+                title={post.title}
+                text={post.desc}
+                readTime={format(post.createdAt, "MMMM do, yyyy")}
+              />
+            </li>
+          ))}
+          <li>{currentPage}</li>
+        </ul>
+      </Suspense>
+      <Pagination totalPages={totalPages} />
     </div>
   );
-};
-
-export default RecentPostsSection;
+}

@@ -4,7 +4,7 @@ import prismadb from "@/lib/prismadb";
 
 export async function GetPosts({
   offset = 0,
-  limit = 20,
+  limit = 5,
 }: {
   search?: string | undefined;
   offset?: number;
