@@ -43,7 +43,6 @@ export default async function RecentPostsSection({
               />
             </li>
           ))}
-          <li>{currentPage}</li>
         </ul>
       </Suspense>
       <Pagination totalPages={totalPages} />
