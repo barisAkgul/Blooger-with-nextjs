@@ -99,7 +99,6 @@ const Footer = () => {
                   className="input-field"
                   autoComplete="off"
                 />
-                {/* <ion-icon name="person-outline" aria-hidden="true"></ion-icon> */}
               </div>
               <div className="input-wrapper  relative mb-[24px]">
                 <input
@@ -110,11 +109,9 @@ const Footer = () => {
                   className="input-field"
                   autoComplete="off"
                 />
-                {/* <ion-icon name="mail-outline" aria-hidden="true"></ion-icon> */}
               </div>
               <a href="#" className="btn btn-primary">
                 <span className="span">Subscribe</span>
-                {/* <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon> */}
               </a>
             </div>
           </div>
@@ -129,7 +126,6 @@ const Footer = () => {
               {footerData.socialLinks.map((socialLink, index) => (
                 <li key={index}>
                   <a href="#" className="social-link hover-2">
-                    {/* <ion-icon name={socialLink.icon}></ion-icon> */}
                     <span className="span">{socialLink.text}</span>
                   </a>
                 </li>

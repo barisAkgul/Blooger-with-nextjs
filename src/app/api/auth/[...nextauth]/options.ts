@@ -20,7 +20,6 @@ export const options: NextAuthOptions = {
         },
       },
       async authorize(credentials) {
-        console.log(!credentials?.email, !credentials?.password);
         if (!credentials?.email || !credentials?.password) {
           throw new Error("Invalid credentials");
         }

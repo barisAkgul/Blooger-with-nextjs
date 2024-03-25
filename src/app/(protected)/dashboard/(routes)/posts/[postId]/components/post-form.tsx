@@ -58,7 +58,6 @@ export const PostForm: React.FC<PostFormProps> = ({
   const params = useParams();
   const router = useRouter();
   const pathname = usePathname();
-  console.log(pathname);
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);

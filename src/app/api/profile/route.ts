@@ -28,8 +28,6 @@ export async function PATCH(req: Request) {
       userDataToUpdate = { ...userDataToUpdate, password: hashedPassword };
     }
 
-    console.log(userDataToUpdate);
-
     const user = await prismadb.user.update({
       where: {
         email: session?.user?.email,

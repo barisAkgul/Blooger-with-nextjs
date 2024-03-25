@@ -15,7 +15,6 @@ export const SidebarItem = ({ label, href }: SidebarItemProps) => {
   const router = useRouter();
 
   const isActive = isActiveRoute(pathname, href);
-  console.log(pathname, href);
 
   const onClick = () => {
     router.push(href);

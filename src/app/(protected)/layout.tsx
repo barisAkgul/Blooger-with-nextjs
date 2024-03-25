@@ -10,8 +10,6 @@ export default async function DashboardLayout({
 }) {
   const session = await serverSession();
 
-  console.log("protected root", session);
-
   if (!session?.user?.email) {
     redirect("/");
   }

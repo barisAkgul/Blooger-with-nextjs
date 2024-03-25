@@ -56,8 +56,6 @@ const ContactPage: React.FC<ContactPageProps> = () => {
     try {
       setLoading(true);
 
-      console.log(data);
-
       toast.success("Succesfull");
       router.refresh();
     } catch (error: any) {

@@ -51,11 +51,8 @@ interface UserFormProps {
 }
 
 export const UserForm: React.FC<UserFormProps> = ({ initialData }) => {
-  const params = useParams();
   const router = useRouter();
   const { data: session } = useSession();
-
-  console.log(session?.user?.email);
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);

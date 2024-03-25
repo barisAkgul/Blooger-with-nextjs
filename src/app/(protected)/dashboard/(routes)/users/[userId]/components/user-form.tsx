@@ -63,10 +63,6 @@ export const UserForm: React.FC<UserFormProps> = ({ initialData }) => {
   const toastMessage = initialData ? "User updated." : "User created.";
   const action = initialData ? "Save changes" : "Create";
 
-  const passwordField = initialData ? "password" : "passwordCreate";
-
-  console.log(passwordField);
-
   const form = useForm<UserFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData

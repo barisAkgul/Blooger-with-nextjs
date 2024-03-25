@@ -46,15 +46,6 @@ export async function PATCH(
       return new NextResponse("Unauthenticated", { status: 403 });
     }
 
-    console.log(
-      "posts-patch",
-      name,
-      categoryName,
-      desc,
-      session?.user?.email,
-      images
-    );
-
     if (!name) {
       return new NextResponse("Name is required", { status: 400 });
     }

@@ -1,5 +1,5 @@
 import React from "react";
-import PopularPostCard from "../common/PopularPostCard"; // PopularPostCard bileşeninin bulunduğu dosyanın yolunu doğru şekilde belirtmelisiniz.
+import PopularPostCard from "../common/PopularPostCard";
 
 const PopularPosts = () => {
   const popularPosts = [

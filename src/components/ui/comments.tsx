@@ -12,8 +12,6 @@ const CommentsSection = async ({ postId }: CommentsSectionProps) => {
     },
   });
 
-  console.log(comments);
-
   return (
     <div>
       <h2 className="text-columbia-blue text-3xl font-semibold mt-4 mb-5">
