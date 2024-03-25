@@ -1,30 +1,25 @@
+import HeroSection from "@/components/home/HeroSection";
 import LastComments from "@/components/home/LastComments";
 import PopularPosts from "@/components/home/PopulerPosts";
+import PopularTagsSection from "@/components/home/PopulerTagsSection";
 import RecentPostsSection from "@/components/home/RecentPostsSection";
-import { Heading } from "@/components/ui/heading";
-import { Separator } from "@/components/ui/separator";
-import React from "react";
 
-const BlogPage = ({
+export default function Home({
   searchParams,
 }: {
   searchParams?: {
     page?: string;
     limit?: string;
-    cat?: string;
   };
-}) => {
+}) {
   const currentPage = Number(searchParams?.page) || 1;
   const limit = Number(searchParams?.limit) || 5;
-
   return (
-    <div className="container min-h-[100vh] pt-10">
-      <Heading
-        variant="landing"
-        title={`Blog Posts`}
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
-      />
-      <Separator className="mt-[-30px] mb-[20px]" />
+    <>
+      <HeroSection />
+
+      {/* @ts-ignore */}
+      <PopularTagsSection />
       <section
         className="section recent-post"
         id="recent"
@@ -40,8 +35,6 @@ const BlogPage = ({
           </div>
         </div>
       </section>
-    </div>
+    </>
   );
-};
-
-export default BlogPage;
+}

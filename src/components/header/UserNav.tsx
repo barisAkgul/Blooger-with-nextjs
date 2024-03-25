@@ -3,14 +3,7 @@
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 
-import {
-  CreditCard,
-  LogOut,
-  PlusCircle,
-  Settings,
-  User,
-  NotebookPen,
-} from "lucide-react";
+import { LogOut, PlusCircle, Settings, User, NotebookPen } from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -28,8 +21,9 @@ import {
 import { ScreenRoutes } from "@/helpers/config/site";
 
 interface UserNavProps {
-  username: string;
-  email: string;
+  username: string | undefined;
+  email: string | undefined;
+  img: string | undefined;
   isAdmin: boolean | undefined;
 }
 
@@ -37,14 +31,18 @@ export const UserNav: React.FC<UserNavProps> = ({
   username,
   email,
   isAdmin,
+  img,
 }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-          <Avatar className="h-8 w-8">
-            <AvatarImage src="/avatars/01.png" alt="@shadcn" />
-            <AvatarFallback>SC</AvatarFallback>
+          <Avatar className="h-8 w-8 ">
+            <AvatarImage
+              className="object-cover"
+              src={img || "/FALLBACKUSERIMG.png"}
+              alt={email}
+            />
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
@@ -60,6 +58,14 @@ export const UserNav: React.FC<UserNavProps> = ({
 
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
+          <Link href={`/${ScreenRoutes.PROFILE}`}>
+            <DropdownMenuItem className="cursor-pointer">
+              <User className="mr-2 h-4 w-4" />
+              <span>Profile</span>
+              <DropdownMenuShortcut>⌘P</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </Link>
+
           <Link href={`/${ScreenRoutes.USER_POSTS}`}>
             <DropdownMenuItem className="cursor-pointer">
               <NotebookPen className="mr-2 h-4 w-4" />

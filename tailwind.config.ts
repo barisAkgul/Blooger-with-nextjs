@@ -18,7 +18,9 @@ const config = {
       },
     },
     fontSize: {
+      xs: "0.75rem",
       sm: "0.8rem",
+      sbase: "0.875rem",
       base: "1rem",
       xl: "1.25rem",
       "2xl": "1.563rem",
@@ -67,15 +69,18 @@ const config = {
 
         // Background Colors
         "oxford-blue": "var(--bg-oxford-blue-2)",
+        "oxford-blue-2": "var(--bg-oxford-blue)",
         "tag-blue": "var(--bg-tag-blue)",
 
         // Text Colors
         "alice-blue": "var(--text-alice-blue)",
         "columbia-blue": "var(--text-columbia-blue)",
         "carolina-blue": "var(--text-carolina-blue)",
+        "wild-blue-yonder": "var(--text-wild-blue-yonder)",
 
         // Border Colors
         "prussian-blue": "var(--border-prussian-blue)",
+        "wild-blue": "var(--border-wild-blue-yonder)",
       },
       borderRadius: {
         lg: "var(--radius)",

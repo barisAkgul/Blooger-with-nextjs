@@ -3,8 +3,6 @@
 import { useState } from "react";
 import { Nav } from "../ui/nav";
 
-type Props = {};
-
 import {
   Notebook,
   LayoutDashboard,
@@ -14,13 +12,13 @@ import {
 } from "lucide-react";
 import { Button } from "../ui/button";
 
-import { useWindowWidth } from "@react-hook/window-size";
+import useWindowDimensions from "@/hooks/use-window-size";
 
-export default function SideNavbar({}: Props) {
+export default function SideNavbar() {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const { width } = useWindowDimensions();
 
-  const onlyWidth = useWindowWidth();
-  const mobileWidth = onlyWidth < 768;
+  const mobileWidth = width && width < 768;
 
   function toggleSidebar() {
     setIsCollapsed(!isCollapsed);

@@ -2,8 +2,8 @@ import React from "react";
 
 const Footer = () => {
   const footerData = {
-    logoSrc: "./assets/images/logo.svg",
-    logoAlt: "Wren logo",
+    logoSrc: "/logo.svg",
+    logoAlt: "Blooger",
     address: {
       street: "123 Main Street",
       city: "New York, NY 10001",
@@ -52,8 +52,8 @@ const Footer = () => {
               <a href="#" className="logo">
                 <img
                   src={footerData.logoSrc}
-                  width="119"
-                  height="37"
+                  width="24"
+                  height="24"
                   loading="lazy"
                   alt={footerData.logoAlt}
                 />

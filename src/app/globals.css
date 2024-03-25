@@ -42,17 +42,19 @@
     --bg-wild-blue-yonder: hsla(216, 33%, 68%, 1);
     --bg-carolina-blue: hsla(199, 89%, 49%, 1);
     --bg-prussian-blue: hsla(0, 0%, 100%, 1);
-    --bg-oxford-blue: hsla(222, 44%, 13%, 1);
+    --bg-oxford-blue: hsl(220, 100%, 99%);
     --bg-oxford-blue-2: rgb(255, 255, 255);
+    --bg-tag-blue: hsl(215, 38%, 94%);
 
     /** Text colors */
     --text-white: hsla(0, 0%, 100%, 1);
     --text-alice-blue: hsla(216, 100%, 95%, 1);
-    --text-columbia-blue: hsla(199, 69%, 84%, 1);
+    --text-columbia-blue: hsl(223, 30%, 29%);
     --text-wild-blue-yonder: hsla(216, 33%, 68%, 1);
     --text-carolina-blue: hsla(199, 89%, 49%, 1);
     --text-shadow-blue: hsla(217, 24%, 59%, 1);
     --text-slate-gray: hsla(217, 17%, 48%, 1);
+    --text-badge: hsl(217, 17%, 48%);
 
     /** Gradient colors */
     --gradient-1: linear-gradient(90deg, #0ea5ea, #0bd1d1 51%);
@@ -61,7 +63,7 @@
 
     /** Border colors */
     --border-wild-blue-yonder: hsla(216, 33%, 68%, 1);
-    --border-prussian-blue: hsla(216, 33%, 20%, 1);
+    --border-prussian-blue: hsla(217, 39%, 94%, 1);
     --border-white: hsl(0, 0%, 100%);
     --border-white-alpha-15: hsla(0, 0%, 100%, 0.15);
 
@@ -85,6 +87,8 @@
     --fontSize-6: 1.4rem;
     --fontSize-7: 1.2rem;
     --fontSize-8: 1.3rem;
+    --fontSize-9: 1rem;
+    --fontSize-10: 0.9rem;
 
     /** Font weight */
     --weight-medium: 500;
@@ -170,6 +174,7 @@
     --bg-prussian-blue: hsla(216, 33%, 20%, 1);
     --bg-oxford-blue: hsla(222, 44%, 13%, 1);
     --bg-oxford-blue-2: hsla(222, 47%, 11%, 1);
+    --bg-tag-blue: hsl(216, 33%, 20%);
 
     /** Text colors */
     --text-white: hsla(0, 0%, 100%, 1);
@@ -179,6 +184,7 @@
     --text-carolina-blue: hsla(199, 89%, 49%, 1);
     --text-shadow-blue: hsla(217, 24%, 59%, 1);
     --text-slate-gray: hsla(217, 17%, 48%, 1);
+    --text-badge: hwb(0 100% 0%);
 
     /** Gradient colors */
     --gradient-1: linear-gradient(90deg, #0ea5ea, #0bd1d1 51%);
@@ -211,6 +217,7 @@
     --fontSize-6: 1.4rem;
     --fontSize-7: 1.2rem;
     --fontSize-8: 1.3rem;
+    --fontSize-10: 0.9rem;
 
     /** Font weight */
     --weight-medium: 500;
@@ -293,7 +300,7 @@ img {
 input,
 button {
   background: none;
-  border: none;
+  /* border: none; */
   font: inherit;
   color: inherit;
 }
@@ -342,6 +349,40 @@ body {
 }
 
 @layer components {
+  /*Images class*/
+  .img-holder {
+    aspect-ratio: var(--width) / var(--height);
+    background-color: var(--bg-prussian-blue);
+    overflow: hidden;
+  }
+
+  .img-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /********************/
+
+  /*Card Badge*/
+
+  .group .card-badge {
+    background-color: var(--bg-tag-blue);
+    max-width: max-content;
+    color: var(--text-badge);
+    font-size: var(--fontSize-10);
+    font-weight: var(--weight-semiBold);
+    padding: 4px 15px;
+    border-radius: var(--radius-pill);
+    transition: var(--transition-1);
+  }
+
+  .group .card-badge:is(:hover, :focus-visible),
+  .pagination-btn:is(:hover, :focus-visible) {
+    transform: translateY(-2px);
+    background-color: var(--bg-carolina-blue);
+  }
+
   .text-transparent-background-clip {
     display: inline-block;
     -webkit-text-fill-color: transparent;
@@ -393,6 +434,22 @@ body {
     animation: slideIn 0.5s ease forwards;
   }
 
+  /*Tag buttons animation*/
+  .tag-btn:is(:hover, :focus-visible) {
+    box-shadow: var(--shadow-2);
+    background-image: linear-gradient(
+        var(--bg-oxford-blue),
+        var(--bg-oxford-blue)
+      ),
+      var(--gradient-1);
+    background-clip: padding-box, border-box;
+    border-color: transparent;
+    transform: translateY(-2px);
+    transition: var(--transition-1);
+  }
+
+  /**********/
+
   @keyframes slideIn {
     0% {
       transform: translateY(-100%);
@@ -419,5 +476,45 @@ body {
   .shape-2 {
     bottom: 20px;
     left: 24px;
+  }
+
+  /*
+  * Hover Effect
+  */
+
+  .hover-1,
+  .hover-2 {
+    transition: var(--transition-1);
+  }
+
+  .hover-1:is(:hover, :focus-visible) {
+    color: var(--text-wild-blue-yonder);
+    transform: translateX(3px);
+  }
+
+  .hover-2:is(:hover, :focus-visible) {
+    color: var(--text-carolina-blue);
+  }
+
+  /*Footer*/
+
+  .footer .input-field {
+    padding: 12px;
+    padding-inline-start: 20px;
+    border-block-end: 1px solid var(--text-wild-blue-yonder);
+    font-size: var(--fontSize-6);
+  }
+
+  .footer .input-field::-webkit-input-placeholder {
+    color: inherit;
+    opacity: 0.5;
+  }
+
+  .footer .input-wrapper ion-icon {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    --ionicon-stroke-width: 40px;
   }
 }
