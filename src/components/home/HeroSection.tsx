@@ -98,7 +98,7 @@ const HeroSection = (props: Props) => {
         <div className="hero-content">
           <p className="text-lg font-bold">Hello Everyone!</p>
 
-          <h1 className="mt-10 mb-10 text-4xl md:text-6xl font-extrabold text-alice-blue">
+          <h1 className="mt-10 mb-10 text-4xl md:text-6xl font-extrabold text-columbia-blue">
             Welcome to{" "}
             <span className="text-transparent-background-clip ">Blooger</span>
           </h1>
