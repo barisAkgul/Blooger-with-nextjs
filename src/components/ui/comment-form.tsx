@@ -11,6 +11,9 @@ import { Button } from "./button";
 import { Textarea } from "./textarea";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "./form";
 import { toast } from "react-hot-toast";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
+import { ScreenRoutes } from "@/helpers/config/site";
 
 const commentSchema = z.object({
   comment: z.string().min(1).max(500),
@@ -24,6 +27,7 @@ interface CommentFormProps {
 
 const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
   const router = useRouter();
+  const { status } = useSession();
 
   const [loading, setLoading] = useState(false);
 
@@ -53,41 +57,45 @@ const CommentForm: React.FC<CommentFormProps> = ({ postId }) => {
       <h2 className="text-columbia-blue text-3xl font-semibold mt-4 mb-5">
         Leave a comment
       </h2>
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 w-full"
-        >
-          <FormField
-            control={form.control}
-            name="comment"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Textarea
-                    className={`min-h-[160px] bg-oxford-blue-2 border-prussian-blue p-[20px] text-lg rounded-[16px] focus:outline-none focus:border-wild-blue-yonder ${
-                      form.formState.errors.comment ? "border-red-500" : ""
-                    }`}
-                    placeholder="Write a comment."
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage className="text-red-500" />
-              </FormItem>
-            )}
-          />
-          <div className="w-full flex justify-end mt-4">
-            <Button
-              type="submit"
-              size="sm"
-              className="btn mt-4 mr-0 text-white text-sm font-semibold p-4"
-              disabled={loading}
-            >
-              Post Comment
-            </Button>
-          </div>
-        </form>
-      </Form>
+      {status === "authenticated" ? (
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-8 w-full"
+          >
+            <FormField
+              control={form.control}
+              name="comment"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Textarea
+                      className={`min-h-[160px] bg-oxford-blue-2 border-prussian-blue p-[20px] text-lg rounded-[16px] focus:outline-none focus:border-wild-blue-yonder ${
+                        form.formState.errors.comment ? "border-red-500" : ""
+                      }`}
+                      placeholder="Write a comment."
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-500" />
+                </FormItem>
+              )}
+            />
+            <div className="w-full flex justify-end mt-4">
+              <Button
+                type="submit"
+                size="sm"
+                className="btn mt-4 mr-0 text-white text-sm font-semibold p-4"
+                disabled={loading}
+              >
+                Post Comment
+              </Button>
+            </div>
+          </form>
+        </Form>
+      ) : (
+        <Link href={`/${ScreenRoutes.SIGNIN}`}>Login to write a comment</Link>
+      )}
     </div>
   );
 };

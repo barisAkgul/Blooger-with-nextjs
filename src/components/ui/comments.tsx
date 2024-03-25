@@ -1,39 +1,42 @@
 import React from "react";
+import UserCard from "../common/UserCard";
 
-type Props = {};
+import prismadb from "@/lib/prismadb";
 
-const CommentsSection = (props: Props) => {
+type CommentsSectionProps = { postId: string };
+
+const CommentsSection = async ({ postId }: CommentsSectionProps) => {
+  const comments = await prismadb.comment.findMany({
+    where: {
+      postId: postId,
+    },
+  });
+
+  console.log(comments);
+
   return (
     <div>
       <h2 className="text-columbia-blue text-3xl font-semibold mt-4 mb-5">
         Comments
       </h2>
+      {comments.map((comment) => {
+        return (
+          <div key={comment.id}>
+            <div>
+              {/* @ts-ignore */}
+              <UserCard
+                email={comment.userEmail}
+                date={comment.createdAt}
+                variant="md"
+              />
+            </div>
 
-      <div>
-        <div className="flex items-center gap-3  mt-[20px] ">
-          <figure className="card-banner img-holder rounded-full shrink-0">
-            <img
-              src={"/assets/images/author-2.png"}
-              width="48"
-              height="48"
-              loading="lazy"
-              alt={"Jane Cooper"}
-            />
-          </figure>
-          <div className="text-base">
-            <p className="card-title font-semibold">{"Jane Cooper"}</p>
-            <time className="card-date " dateTime={"2022-04-15"}>
-              {"2022-04-15"}
-            </time>
+            <div className="border bg-oxford-blue-2 border-prussian-blue p-[20px] text-lg rounded-[16px] mt-6">
+              {comment.comment}
+            </div>
           </div>
-        </div>
-
-        <div className="border bg-oxford-blue-2 border-prussian-blue p-[20px] text-lg rounded-[16px] mt-6">
-          White white dreamy drama tically place everything although. Place out
-          apartment afternoon whimsical kinder, little romantic joy we flowers
-          handmade.
-        </div>
-      </div>
+        );
+      })}
     </div>
   );
 };
