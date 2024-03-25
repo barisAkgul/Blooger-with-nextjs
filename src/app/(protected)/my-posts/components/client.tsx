@@ -1,6 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
+
 import { Plus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -31,6 +32,7 @@ const PostsClient: React.FC<PostsClientProps> = ({ data }) => {
       </div>
 
       <Separator />
+
       <DataTable searchKey="title" columns={columns} data={data} />
     </>
   );

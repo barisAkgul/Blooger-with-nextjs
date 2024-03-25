@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { Trash } from "lucide-react";
 import { Category, Post } from "@prisma/client";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, usePathname } from "next/navigation";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -56,6 +56,7 @@ export const PostForm: React.FC<PostFormProps> = ({
 }) => {
   const params = useParams();
   const router = useRouter();
+  const pathname = usePathname();
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -99,7 +100,8 @@ export const PostForm: React.FC<PostFormProps> = ({
         await axios.post(`/api/${ScreenRoutes.USER_POSTS}`, data);
       }
 
-      router.push(`/${ScreenRoutes.USER_POSTS}`);
+      // router.push(`/${ScreenRoutes.USER_POSTS}`);
+      router.back();
       toast.success(toastMessage);
       router.refresh();
     } catch (error: any) {
@@ -114,7 +116,7 @@ export const PostForm: React.FC<PostFormProps> = ({
       setLoading(true);
       await axios.delete(`/api/${ScreenRoutes.USER_POSTS}/${params.postId}`);
       router.refresh();
-      router.push(`/${ScreenRoutes.USER_POSTS}`);
+      router.back();
       toast.success("post deleted.");
     } catch (error: any) {
       toast.error("Something went wrong.");

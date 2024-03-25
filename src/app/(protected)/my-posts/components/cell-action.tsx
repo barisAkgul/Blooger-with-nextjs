@@ -4,7 +4,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Copy, Edit, MoreHorizontal, Trash } from "lucide-react";
 import { toast } from "react-hot-toast";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, usePathname } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -25,7 +25,7 @@ interface CellActionProps {
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const router = useRouter();
-  const params = useParams();
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -34,12 +34,9 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
       setLoading(true);
       await axios.delete(`/api/${ScreenRoutes.USER_POSTS}/${data.id}`);
       router.refresh();
-      router.push(`/${ScreenRoutes.USER_POSTS}`);
       toast.success("Posts deleted.");
     } catch (error: any) {
-      toast.error(
-        "Make sure you removed all categories using this post first."
-      );
+      toast.error("Make sure you removed all posts using this post first.");
     } finally {
       setLoading(false);
       setOpen(false);
