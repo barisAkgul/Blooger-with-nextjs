@@ -3,27 +3,25 @@ import serverSession from "@/lib/serverSession";
 import { NextResponse } from "next/server";
 
 // // GET ALL COMMENTS OF A POST
-// export const GET = async (req: Request) => {
-//   const { searchParams } = new URL(req.url);
+export const GET = async (req: Request) => {
+  const { searchParams } = new URL(req.url);
 
-//   const postId = searchParams.get("postId");
+  const postId = searchParams.get("postId");
 
-//   try {
-//     const comments = await prisma.comment.findMany({
-//       where: {
-//         ...(postId && { postId }),
-//       },
-//       include: { user: true },
-//     });
+  try {
+    const comments = await prismadb.comment.findMany({
+      where: {
+        ...(postId && { postId }),
+      },
+      include: { user: true },
+    });
 
-//     return new NextResponse(JSON.stringify(comments, { status: 200 }));
-//   } catch (err) {
-//     // console.log(err);
-//     return new NextResponse(
-//       JSON.stringify({ message: "Something went wrong!" }, { status: 500 })
-//     );
-//   }
-// };
+    return NextResponse.json({ comments });
+  } catch (error) {
+    console.log("[COMMENT_GET]", error);
+    return new NextResponse("Internal error", { status: 500 });
+  }
+};
 
 // CREATE A COMMENT
 export const POST = async (req: Request) => {

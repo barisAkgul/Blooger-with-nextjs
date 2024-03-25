@@ -2,17 +2,21 @@ import { NextResponse } from "next/server";
 
 import prismadb from "@/lib/prismadb";
 import serverSession from "@/lib/serverSession";
+import serverAuth from "@/lib/serverAuth";
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const session = await serverSession();
+    const currentUser = await serverAuth();
+
+    if (!currentUser?.email || !currentUser?.isAdmin) {
+      return new NextResponse(
+        "You do not have permission to access this resource.",
+        { status: 403 }
+      );
+    }
 
     const { title, img } = body;
-
-    if (!session?.user?.email) {
-      return new NextResponse("Unauthenticated", { status: 403 });
-    }
 
     if (!title) {
       return new NextResponse("Title is required", { status: 400 });

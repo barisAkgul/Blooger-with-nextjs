@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     const body = await req.json();
     const session = await serverSession();
 
-    const { name, images, categoryName, desc } = body;
+    const { name, images, categoryName, desc, content } = body;
 
     if (!session?.user?.email) {
       return new NextResponse("Unauthenticated", { status: 403 });
@@ -27,6 +27,7 @@ export async function POST(req: Request) {
         slug: name,
         title: name,
         desc: desc,
+        content: content,
         img: images,
         catSlug: categoryName,
         userEmail: session?.user?.email,
