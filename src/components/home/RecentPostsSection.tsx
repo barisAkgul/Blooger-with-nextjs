@@ -29,9 +29,9 @@ export default async function RecentPostsSection({
       />
 
       <Suspense key={currentPage} fallback={"Loading"}>
-        <ul className="grid gap-14">
+        <div className="grid gap-14">
           {data.map((post, index) => (
-            <li key={index}>
+            <div key={index}>
               <RecentPostCard
                 id={post.id}
                 imgSrc={post.img}
@@ -41,9 +41,9 @@ export default async function RecentPostsSection({
                 text={post.desc}
                 readTime={format(post.createdAt, "MMMM do, yyyy")}
               />
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </Suspense>
       <Pagination totalPages={totalPages} />
     </div>
